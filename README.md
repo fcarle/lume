@@ -34,7 +34,9 @@ Recognition time still depends on the device, page, and initial language downloa
 
 ## Deploy to Vercel
 
-Import this repository as a Next.js project. `vercel.json` uses `npm run build` and the static `out` directory. No environment variables are needed. Alternatively, sign into your own Vercel account and run `npx vercel`.
+Import this repository into Vercel. The app is built with Next.js but deployed as static files: `vercel.json` selects the **Other** framework preset (`framework: null`), runs `npm run build`, and publishes `out`. These values override the corresponding project settings. No environment variables are needed. Alternatively, sign into your own Vercel account and run `npx vercel`.
+
+Keep the static framework preset and `out` output directory together. The Next.js preset expects Next.js build manifests in `.next`; pairing it with `out` produces a missing `routes-manifest.json` error. The static preset also publishes the offline service worker generated at `out/sw.js`. See [Vercel's framework configuration](https://vercel.com/docs/project-configuration/vercel-json#framework).
 
 An iPhone needs the **HTTPS deployment URL** for camera access; plain HTTP LAN URLs will not work. Open directly in Safari. Choose Share → Add to Home Screen to install. Select headphones in iOS Control Center.
 
